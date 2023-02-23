@@ -2,6 +2,6 @@ package com.eplan.isbnfinder.validate;
 
 public interface IsbnValidator {
 
-	public boolean validate();
+	public Isbn[] validate(String[] isbns);
 	
 }
