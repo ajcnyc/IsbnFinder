@@ -17,7 +17,7 @@ public class RequestResponseFormatter {
 	 * @return A String array of ISBNs
 	 */
 	public String[] formatRequest(String csvRequest) {
-		return csvRequest.split(",");
+		return csvRequest.split(",",-1); // -1 to make slots for trailing empty Strings
 	}
 
 }

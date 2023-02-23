@@ -38,37 +38,49 @@ class RequestResponseFormatterTests {
 	@Test
 	@DisplayName("Test Formatting a Bad CSV Request That's All Commas")
 	void testAllCommasRequest() {
-		fail("Not yet implemented");
+		String requestString = ",,,,,,";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 7);
 	}
 	
 	@Test
 	@DisplayName("Test Formatting a Bad CSV Request That's All Commas Except 1 ISBN in the Middle")
 	void testAllCommasRequestButMiddle() {
-		fail("Not yet implemented");
+		String requestString = ",,,978-1- 119-84 766 -3,,,";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 7);
 	}
 	
 	@Test
 	@DisplayName("Test Formatting a Bad CSV Request That's All Commas Except 1 ISBN at the Start")
 	void testAllCommasRequestButStart() {
-		fail("Not yet implemented");
+		String requestString = "978-1- 119-84 766 -3,,,,,,";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 7);
 	}
 	
 	@Test
 	@DisplayName("Test Formatting a Bad CSV Request That's All Commas Except 1 ISBN at the End")
 	void testAllCommasRequestButEnd() {
-		fail("Not yet implemented");
+		String requestString = ",,,,,,978-1- 119-84 766 -3";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 7);
 	}
 	
 	@Test
 	@DisplayName("Test Formatting a Bad Request That Contains Random Junk")
 	void testJunkRequest() {
-		fail("Not yet implemented");
+		String requestString = "agikj2094t!!gjoajl;k";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 1);
 	}
 	
 	@Test
 	@DisplayName("Test Formatting a Bad Request That's empty")
 	void testFormatEmptyRequest() {
-		fail("Not yet implemented");
+		String requestString = "";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 1);
 	}
 	
 	// TODO: TEST FORMATTING RESPONSES_________________________________________
