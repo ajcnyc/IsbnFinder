@@ -94,19 +94,55 @@ class RequestResponseFormatterTests {
 	// TODO: TEST FORMATTING RESPONSES_________________________________________
 
 	@Test
-	@DisplayName("Test Formatting a Good Response")
-	void testFormatGoodResponse() {
+	@DisplayName("Mock Test Formatting a Good Response")
+	void mockTestFormatGoodResponse() {
 		Isbn[] isbns = { new Isbn("0-06-097329-3", true), new Isbn("words", false) };
 
 		RequestResponseFormatter formatter = mock(RequestResponseFormatter.class);
 		when(formatter.formatResponse(isbns)).thenReturn("[{\"isbn\": \"0-06-097329-3\", \"validity\": true}, {\"isbn\": \"words\", \"validity\": false}]");
 		String responseJson = formatter.formatResponse(isbns);
+		
 		Gson gson = new Gson();
 		Isbn[] check = gson.fromJson(responseJson, Isbn[].class);
+		
 		assertEquals(check.length, 2);
 		assertEquals(check[0].getIsbn(),"0-06-097329-3");
 		assertEquals(check[0].isValid(),true);
 		assertEquals(check[1].getIsbn(),"words");
+		assertEquals(check[1].isValid(),false);
+	}
+	
+	@Test
+	@DisplayName("Implementation Test Formatting a Good Response")
+	void implTestFormatGoodResponse() {
+		Isbn[] isbns = { new Isbn("0-06-097329-3", true), new Isbn("words", false) };
+		
+		String responseJson = formatter_.formatResponse(isbns);
+		
+		Gson gson = new Gson();
+		Isbn[] check = gson.fromJson(responseJson, Isbn[].class);
+		
+		assertEquals(check.length, 2);
+		assertEquals(check[0].getIsbn(),"0-06-097329-3");
+		assertEquals(check[0].isValid(),true);
+		assertEquals(check[1].getIsbn(),"words");
+		assertEquals(check[1].isValid(),false);
+	}
+	
+	@Test
+	@DisplayName("Implementation Test Formatting a Response with nulls")
+	void implTestFormatNullsResponse() {
+		Isbn[] isbns = { new Isbn(null, true), new Isbn(null, false) };
+		
+		String responseJson = formatter_.formatResponse(isbns);
+		
+		Gson gson = new Gson();
+		Isbn[] check = gson.fromJson(responseJson, Isbn[].class);
+		
+		assertEquals(check.length, 2);
+		assertEquals(check[0].getIsbn(),null);
+		assertEquals(check[0].isValid(),true);
+		assertEquals(check[1].getIsbn(),null);
 		assertEquals(check[1].isValid(),false);
 	}
 
