@@ -30,7 +30,9 @@ class RequestResponseFormatterTests {
 	@Test
 	@DisplayName("Test Formatting a Good CSV Request, but with Extra Whitespace")
 	void testFormatWhitespaceRequest() {
-		fail("Not yet implemented");
+		String requestString = "          0-06  -0 97329-3, 97 81 62          1291657, 978-1- 119-84 766 -3,      200               ";
+		String[] isbnArr = formatter_.formatRequest(requestString);
+		assertEquals(isbnArr.length, 4);
 	}
 
 	@Test
