@@ -1,6 +1,7 @@
 package com.eplan.isbnfinder.requestResponse.formatter;
 
 import com.eplan.isbnfinder.validate.Isbn;
+import com.google.gson.Gson;
 
 /**
  * Formats requests from the frontend to the backend and responses from the
@@ -29,6 +30,7 @@ public class RequestResponseFormatter {
 	 * @return A JSON String
 	 */
 	public String formatResponse(Isbn[] isbns) {
-		return null;
+		Gson gson = new Gson();
+		return gson.toJson(isbns, Isbn[].class);
 	}
 }
