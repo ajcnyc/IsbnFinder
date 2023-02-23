@@ -8,8 +8,8 @@ package com.eplan.isbnfinder.validate;
  */
 public class Isbn {
 	
-	private String isbn_; // The ISBN Number
-	private boolean validity_; // Whether the ISBN is valid or not
+	public String isbn; // The ISBN Number
+	public boolean validity; // Whether the ISBN is valid or not
 	
 	/**
 	 * Creates a new ISBN Number
@@ -18,8 +18,8 @@ public class Isbn {
 	 * @param validity Whether the ISBN is valid or not
 	 */
 	public Isbn(String isbn, boolean validity) {
-		isbn_ = isbn;
-		validity_ = validity;
+		this.isbn = isbn;
+		this.validity = validity;
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class Isbn {
 	 * @return The ISBN number
 	 */
 	public String getIsbn() {
-		return isbn_;
+		return this.isbn;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class Isbn {
 	 * @param isbn The ISBN number to set
 	 */
 	public void setIsbn(String isbn) {
-		isbn_ = isbn;
+		this.isbn = isbn;
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class Isbn {
 	 * @return true if valid, false if not
 	 */
 	public boolean isValid() {
-		return validity_;
+		return this.validity;
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class Isbn {
 	 * @param validity true if valid, false if not
 	 */
 	public void setValidity(boolean validity) {
-		validity_ = validity;
+		this.validity = validity;
 	}
 	
 	
