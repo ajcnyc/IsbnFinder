@@ -14,7 +14,7 @@ import com.eplan.isbnfinder.validate.apache.ApacheIsbnValidator;
 public class ApacheIsbn10Validator implements ApacheIsbnValidator {
 
 	private ISBNValidator apacheValidator_; // The Apache ISBNValidator to use
-	
+
 	/**
 	 * Creates an ApacheIsbn10Validator
 	 */
@@ -22,18 +22,23 @@ public class ApacheIsbn10Validator implements ApacheIsbnValidator {
 		apacheValidator_ = new ISBNValidator();
 	}
 
-	
 	@Override
 	public Isbn[] validate(String... isbns) {
-		// Get validity
-		boolean validity = apacheValidator_.isValidISBN10(isbns[0]);
+
+		Isbn[] ret = new Isbn[isbns.length]; // The ISBN array to return
 		
-		// Construct Isbn Object
-		Isbn isbn = new Isbn(isbns[0],validity);
-		
-		// Put it in an array and return
-		Isbn[] ret = {isbn};
+		// For each isbn
+		for (int i = 0; i < isbns.length; i++) {
+			// Get validity
+			boolean validity = apacheValidator_.isValidISBN10(isbns[i]);
+
+			// Construct Isbn Object
+			Isbn isbn = new Isbn(isbns[i], validity);
+
+			// Put it in an array and return
+			ret[i] = isbn;
+		}
 		return ret;
 	}
- 
+
 }
