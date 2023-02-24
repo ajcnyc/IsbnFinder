@@ -21,7 +21,7 @@ class FlexibleApacheIsbnValidatorTests {
 
 	@Test
 	@DisplayName("Mock Test Validating 1 Good ISBN-10 and 1 Good ISBN-13")
-	void mockTestValidate1GoodString() {
+	void mockTestValidate2GoodStrings() {
 		String[] isbnStrs = { "0-06-097329-3", "9781621291657" };
 		FlexibleApacheIsbnValidator validator = mock(FlexibleApacheIsbnValidator.class);
 		Isbn[] validated = { new Isbn(isbnStrs[0], true), new Isbn(isbnStrs[1], true) };
@@ -34,17 +34,19 @@ class FlexibleApacheIsbnValidatorTests {
 		}
 	}
 
-//	@Test
-//	@DisplayName("Implementation Test Validating 1 Good String")
-//	void implementationTestValidate1GoodString() {
-//		String isbnStr = "9781621291657";
-//		Isbn[] validated = validator_.validate(isbnStr);
-//
-//		assertEquals(validated.length, 1);
-//		assertEquals(validated[0].isbn, isbnStr);
-//		assertEquals(validated[0].isValid(), true);
-//	}
-//
+	@Test
+	@DisplayName("Implementation Test Validating 1 Good ISBN-10 and 1 Good ISBN-13")
+	void implementationTestValidate2GoodStrings() {
+		String[] isbnStrs = { "0-06-097329-3", "9781621291657" };
+		Isbn[] validated = validator_.validate(isbnStrs);
+
+		assertEquals(validated.length, isbnStrs.length);
+		for (int i = 0; i < isbnStrs.length; i++) {
+			assertEquals(validated[i].isbn, isbnStrs[i]);
+			assertEquals(validated[i].isValid(), true);
+		}
+	}
+	
 //	@Test
 //	@DisplayName("Implementation Test Validating 3 Good Strings")
 //	void implementationTestValidate3GoodStrings() {
