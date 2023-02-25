@@ -1,12 +1,15 @@
 package com.eplan.isbnfinder.validate;
 
+import org.springframework.stereotype.Service;
+
 /**
  * Validator interface to check if Strings are valid ISBNs
  * 
  * @author Alex Cohen
  *
  */
-public interface IsbnValidator {
+@Service
+public interface IsbnValidatorService {
 
 	/**
 	 * Checks whether the given strings are valid ISBN numbers or not. All ISBNs

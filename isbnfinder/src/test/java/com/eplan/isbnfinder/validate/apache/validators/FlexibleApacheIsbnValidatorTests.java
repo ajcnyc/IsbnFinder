@@ -12,18 +12,18 @@ import com.eplan.isbnfinder.validate.Isbn;
 
 class FlexibleApacheIsbnValidatorTests {
 
-	private FlexibleApacheIsbnValidator validator_;
+	private FlexibleApacheIsbnValidatorService validator_;
 
 	@BeforeEach
 	void setUp() {
-		validator_ = new FlexibleApacheIsbnValidator();
+		validator_ = new FlexibleApacheIsbnValidatorService();
 	}
 
 	@Test
 	@DisplayName("Mock Test Validating 1 Good ISBN-10 and 1 Good ISBN-13")
 	void mockTestValidate2GoodStrings() {
 		String[] isbnStrs = { "0-06-097329-3", "9781621291657" };
-		FlexibleApacheIsbnValidator validator = mock(FlexibleApacheIsbnValidator.class);
+		FlexibleApacheIsbnValidatorService validator = mock(FlexibleApacheIsbnValidatorService.class);
 		Isbn[] validated = { new Isbn(isbnStrs[0], true), new Isbn(isbnStrs[1], true) };
 		when(validator.validate(isbnStrs)).thenReturn(validated);
 

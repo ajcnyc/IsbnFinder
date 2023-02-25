@@ -1,9 +1,9 @@
 package com.eplan.isbnfinder.validate.apache.validators;
 
-import org.apache.commons.validator.routines.ISBNValidator;
+import org.springframework.stereotype.Service;
 
 import com.eplan.isbnfinder.validate.Isbn;
-import com.eplan.isbnfinder.validate.apache.ApacheIsbnValidator;
+import com.eplan.isbnfinder.validate.apache.ApacheIsbnValidatorService;
 
 /**
  * 
@@ -12,17 +12,18 @@ import com.eplan.isbnfinder.validate.apache.ApacheIsbnValidator;
  * @author Alex Cohen
  *
  */
-public class FlexibleApacheIsbnValidator implements ApacheIsbnValidator {
+@Service
+public class FlexibleApacheIsbnValidatorService implements ApacheIsbnValidatorService {
 	
-	private ApacheIsbn10Validator isbn10Validator_; // The IsbnValidator for ISBN-10's
-	private ApacheIsbn13Validator isbn13Validator_; // The IsbnValidator for ISBN-13's
+	private ApacheIsbn10ValidatorService isbn10Validator_; // The IsbnValidator for ISBN-10's
+	private ApacheIsbn13ValidatorService isbn13Validator_; // The IsbnValidator for ISBN-13's
 
 	/**
 	 * Creates a FlexibleApacheIsbnValidator
 	 */
-	public FlexibleApacheIsbnValidator() {
-		isbn10Validator_ = new ApacheIsbn10Validator();
-		isbn13Validator_ = new ApacheIsbn13Validator();
+	public FlexibleApacheIsbnValidatorService() {
+		isbn10Validator_ = new ApacheIsbn10ValidatorService();
+		isbn13Validator_ = new ApacheIsbn13ValidatorService();
 	}
 	
 	@Override

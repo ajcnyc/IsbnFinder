@@ -12,18 +12,18 @@ import com.eplan.isbnfinder.validate.Isbn;
 
 class ApacheIsbn13ValidatorTests {
 
-	private ApacheIsbn13Validator validator_;
+	private ApacheIsbn13ValidatorService validator_;
 
 	@BeforeEach
 	void setUp() {
-		validator_ = new ApacheIsbn13Validator();
+		validator_ = new ApacheIsbn13ValidatorService();
 	}
 
 	@Test
 	@DisplayName("Mock Test Validating 1 Good String")
 	void mockTestValidate1GoodString() {
 		String isbnStr = "9781621291657";
-		ApacheIsbn13Validator validator = mock(ApacheIsbn13Validator.class);
+		ApacheIsbn13ValidatorService validator = mock(ApacheIsbn13ValidatorService.class);
 		Isbn[] validated = { new Isbn(isbnStr, true) };
 		when(validator.validate(isbnStr)).thenReturn(validated);
 
