@@ -1,5 +1,6 @@
 package com.eplan.isbnfinder;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,11 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.eplan.isbnfinder.requestResponse.formatter.RequestResponseFormatter;
 import com.eplan.isbnfinder.validate.Isbn;
 import com.eplan.isbnfinder.validate.IsbnValidatorService;
-import com.eplan.isbnfinder.validate.apache.validators.FlexibleApacheIsbnValidatorService;
 
 @RestController
 @RequestMapping("/api")
 public class IsbnRestController {
+	
+	@Autowired
+	private IsbnValidatorService validator_;
 	
 	@GetMapping("/validate-with-get")
     public String testValidateWithGet(@RequestParam(value = "csv", defaultValue = "") String csv) {
@@ -31,8 +34,7 @@ public class IsbnRestController {
     	RequestResponseFormatter formatter = new RequestResponseFormatter();
     	String[] strIsbns = formatter.formatRequest(csvRequest);
     	
-    	IsbnValidatorService validator = new FlexibleApacheIsbnValidatorService();
-    	Isbn[] isbns = validator.validate(strIsbns);
+    	Isbn[] isbns = validator_.validate(strIsbns);
     	
     	String response = formatter.formatResponse(isbns);
     	
