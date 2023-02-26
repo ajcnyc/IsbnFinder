@@ -15,6 +15,8 @@ export class IsbnService {
      * @return An array of validated Isbn objects 
      */
     public validateIsbns(csvIsbns: string): Isbn[] {
-        
+        // TODO: Implement
+        let isbns: Isbn[] = [];
+        return isbns;
     }
 }

@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'angular-isbn-finder'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-isbn-finder');
+    expect(app.title).toEqual('ISBN Validator');
   });
 
   // it('should render title', () => {
