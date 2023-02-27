@@ -26,7 +26,8 @@ public class IsbnRestController {
     public String testValidateWithGet(@RequestParam(value = "csv", defaultValue = "") String csv) {
     	return handleRequest(csv);
     }
-    
+	
+	@CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/validate")
     public @ResponseBody String validateIsbns( @RequestBody String csv ) {
     	return handleRequest(csv);

@@ -24,6 +24,6 @@ export class IsbnService {
      * @return An array of validated Isbn objects 
      */
     public validateIsbns(csvIsbns: string): any {
-        return this.http.get('http://localhost:8080/api/validate-with-get?csv=' + csvIsbns);
+        return this.http.post('http://localhost:8080/api/validate', csvIsbns);
     }
 }
