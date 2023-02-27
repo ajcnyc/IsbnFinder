@@ -1,6 +1,7 @@
 package com.eplan.isbnfinder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ public class IsbnRestController {
 	@Autowired
 	private IsbnValidatorService validator_;
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/validate-with-get")
     public String testValidateWithGet(@RequestParam(value = "csv", defaultValue = "") String csv) {
     	return handleRequest(csv);

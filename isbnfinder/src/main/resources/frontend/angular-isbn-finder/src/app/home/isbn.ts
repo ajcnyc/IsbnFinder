@@ -48,4 +48,18 @@ export class Isbn {
     public setValidity(validity: boolean) {
         this.validity = validity;
     }
+
+    public equals(other: any): boolean {
+        if (other instanceof Isbn) {
+            let otherIsbn: Isbn = <Isbn>other;
+            if (otherIsbn.getIsbn() === this.getIsbn() &&
+                otherIsbn.getValidity() === this.getValidity()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

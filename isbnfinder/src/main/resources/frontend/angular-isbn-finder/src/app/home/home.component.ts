@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { IsbnService } from './isbn.service';
+import { Isbn } from './isbn';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,14 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  output: string = '';
 
+  constructor(private isbnService: IsbnService) {}
+
+  validate() {
+    let requestCsv:string = (<HTMLInputElement> document.getElementById('isbn-field')).value;
+    this.isbnService.validateIsbns(requestCsv).subscribe((result: Isbn[]) => {
+      this.output = JSON.stringify(result);
+   });
+  }
 }
