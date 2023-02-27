@@ -1,0 +1,27 @@
+#navbar {
+    background-color: #034B79; /* Venice Blue */
+    height: 75px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  li.centered {
+    margin: 0 auto;
+  }
+
+#logo {
+    color: #FFFFFF; /* White */
+    text-decoration: none;
+    font-size: 28px;
+    margin: 0 auto;
+}

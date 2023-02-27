@@ -1,0 +1,85 @@
+#main-div {
+    text-align: center;
+}
+
+#main-div * {
+    margin-top: 50px;
+}
+
+#instructions {
+    font-size: 20px;
+}
+
+#isbn-field {
+    display: block;
+    margin: auto;
+
+    width: 300px;
+    line-height: 30px;
+    padding: 10px;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+#validate-btn {
+    width: 320px;
+}
+
+#validate-btn:hover {
+    background-color: #29968b;
+    cursor: pointer;
+}
+
+#validate-btn:focus {
+    background-color: #35B5A8;
+}
+
+
+/* Folding Mobile */
+@media screen and (max-width: 360px) {
+    #isbn-field {
+        width: 220px;
+    }
+    
+    #validate-btn {
+        width: 240px;
+    }
+}
+
+/* Mobile */
+@media screen and (min-width: 360px) and (max-width: 600px ) {
+    #isbn-field {
+        width: 300px;
+    }
+    
+    #validate-btn {
+        width: 320px;
+    }
+}
+
+/* Tablets */
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    #isbn-field {
+        width: 500px;
+    }
+    
+    #validate-btn {
+        width: 320px;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 992px) {
+    #instructions {
+        font-size: 24px;
+    }
+
+    #isbn-field {
+        width: 800px;
+    }
+    
+    #validate-btn {
+        width: 320px;
+    }
+}
