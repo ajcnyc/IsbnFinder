@@ -2,5 +2,5 @@
     <p id="instructions" class="text">Enter ISBNs, Separated by Commas</p>
     <input id="isbn-field" type="text" placeholder="0-06-097329-3,9781621291657">
     <input id="validate-btn" class="button" type="button" value="Validate" (click)="validate()">
-    <p id="test">{{output}}</p>
+    <app-isbn-table [output]="output"></app-isbn-table>
 </div>

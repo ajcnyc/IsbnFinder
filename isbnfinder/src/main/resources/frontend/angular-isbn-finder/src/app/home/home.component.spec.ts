@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { HomeComponent } from './home.component';
 import { IsbnService } from './isbn.service';
+import { IsbnTableComponent } from './isbn-table/isbn-table.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,7 +14,7 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [IsbnService],
-      declarations: [HomeComponent]
+      declarations: [HomeComponent, IsbnTableComponent]
     })
       .compileComponents();
 

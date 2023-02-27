@@ -1,1 +1,14 @@
-<p>isbn-table works!</p>
+<table id="results-table">
+    <thead>
+        <tr>
+            <th class="text">ISBN</th>
+            <th class="text">Valid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let isbn of output">
+            <td class="text">{{isbn.isbn}}</td>
+            <td class="text">{{isbn.validity}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -8,14 +8,16 @@ import { Isbn } from './isbn';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  output: string = '';
+  output: Isbn[] = [];
 
-  constructor(private isbnService: IsbnService) {}
+  constructor(private isbnService: IsbnService) { }
 
   validate() {
-    let requestCsv:string = (<HTMLInputElement> document.getElementById('isbn-field')).value;
-    this.isbnService.validateIsbns(requestCsv).subscribe((result: Isbn[]) => {
-      this.output = JSON.stringify(result);
-   });
+    let requestCsv: string = (<HTMLInputElement>document.getElementById('isbn-field')).value;
+    if (requestCsv.length > 0) {
+      this.isbnService.validateIsbns(requestCsv).subscribe((result: Isbn[]) => {
+        this.output = result;
+      });
+    }
   }
 }

@@ -5,13 +5,19 @@
  */
 export class Isbn {
 
+    public isbn: string;
+    public validity: boolean;
+
     /**
      * Creates a new ISBN number with the given isbn string and a validity for whether the ISBN is valid
      * 
      * @param isbn The ISBN number as a string
      * @param validity True if the ISBN is valid, false if not
      */
-    constructor(private isbn: string, private validity: boolean) { }
+    constructor(isbn: string, validity: boolean) { 
+        this.isbn = isbn;
+        this.validity = validity;
+    }
 
     /**
      * Gets the ISBN number
@@ -62,4 +68,5 @@ export class Isbn {
             return false;
         }
     }
+
 }
