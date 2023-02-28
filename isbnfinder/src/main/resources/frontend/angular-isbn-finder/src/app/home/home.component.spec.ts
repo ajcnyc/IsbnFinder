@@ -1,10 +1,12 @@
+import { Isbn } from './isbn';
+import { IsbnService } from './isbn.service';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import {HttpClientModule} from '@angular/common/http';
 
-import { HomeComponent } from './home.component';
-import { IsbnService } from './isbn.service';
 import { IsbnTableComponent } from './isbn-table/isbn-table.component';
+import { HomeComponent } from './home.component';
+
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -27,30 +29,43 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should display the JSON response on validate button click', () => {
-  //   fixture.debugElement.nativeElement.querySelector('#isbn-field').value = '0-06-097329-3,9781621291657,5,a,,hi,1-1-1';
+  it('Integration Test: It should populate the table on validate button click', (done: DoneFn) => {
 
-  //   let button = fixture.debugElement.nativeElement.querySelector('#validate-btn');
-  //   button.click();
+    let csvInput = fixture.nativeElement.querySelector('#isbn-field');
+    csvInput.value = "0-06-097329-3,9781621291657,5,a,,hi,1-1-1";
 
-  //   let testP = fixture.debugElement.nativeElement.querySelector('#test');
+    let btn = fixture.nativeElement.querySelector('#validate-btn');
+    btn.click();
 
-  //   let correctResult = [{ "isbn": "0-06-097329-3", "validity": true }, 
-  //   { "isbn": "9781621291657", "validity": true }, 
-  //   { "isbn": "5", "validity": false }, 
-  //   { "isbn": "a", "validity": false }, 
-  //   { "isbn": "", "validity": false }, 
-  //   { "isbn": "hi", "validity": false }, 
-  //   { "isbn": "1-1-1", "validity": false }];
+    let correct: Isbn[] = [
+      new Isbn("0-06-097329-3", true),
+      new Isbn("9781621291657", true),
+      new Isbn("5", false),
+      new Isbn("a", false),
+      new Isbn("", false),
+      new Isbn("hi", false),
+      new Isbn("1-1-1", false)];
 
-  //   let correctResultStr = JSON.stringify(correctResult);
+      const httpTestingController = TestBed.inject(HttpTestingController);
+      const req = httpTestingController.expectOne('http://localhost:8080/api/validate');
+      expect(req.request.method).toEqual('POST');
+      req.flush(correct);
+    
+      fixture.detectChanges();
+      validateTable(correct);
+      done();
+  });
 
-  //   fixture.whenStable().then(() => {
-  //     expect(testP.innerHtml).toEqual(correctResultStr);
-  //   });
-  // });
+  function validateTable(correct: Isbn[]) {
+    const rows = fixture.nativeElement.querySelectorAll('tr'); // select all rows in the table
+    expect(rows.length).toBe(8); // 1 Extra row for headers
+    for (let i: number = 1; i < rows.length; i++) {
+      const row = rows[i];
+      const cells = row.querySelectorAll('td'); // select all cells in the row
+      expect(cells.length).toBe(2);
+      expect(cells[0].textContent.trim()).toEqual(correct[i - 1].getIsbn());
+      expect(cells[1].textContent.trim()).toEqual("" + correct[i - 1].getValidity());
+    }
+  }
 
-  // it('should', () => {
-
-  // });
 });
