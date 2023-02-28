@@ -3,6 +3,7 @@ import { IsbnService } from './isbn.service';
 
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('IsbnService', () => {
     let httpTestingController: HttpTestingController;
@@ -67,4 +68,40 @@ describe('IsbnService', () => {
         expect(req.request.method).toEqual('POST');
         req.flush(validated);
     });
+
+    it('should handle network errors', () => {
+        const csvIsbns = "0-06-097329-3,9781621291657,5,a,,hi,1-1-1";
+        const errorMessage = 'There was a problem connecting to the server. Please try again later.';
+    
+        spyOn(console, 'error');
+
+        isbnService.validateIsbns(csvIsbns).subscribe(
+          () => fail('Expected an error, but got a successful response'),
+          (error: HttpErrorResponse) => {
+            expect(error.message).toEqual(errorMessage);
+            expect(console.error).toHaveBeenCalledWith('Network error:', jasmine.any(String));
+          }
+        );
+          
+        const req = httpTestingController.expectOne('http://localhost:8080/api/validate');
+        req.error(new ErrorEvent('Network error'));
+    
+      });
+    
+      it('should handle HTTP errors', () => {
+        const csvIsbns = "0-06-097329-3,9781621291657,5,a,,hi,1-1-1";
+        const errorMessage = 'There was a problem processing your request. Please try again later.';
+    
+        spyOn(console, 'error');
+
+        isbnService.validateIsbns(csvIsbns).subscribe(
+          () => fail('Expected an error, but got a successful response'),
+          (error: HttpErrorResponse) => expect(error.message).toEqual(errorMessage)
+        );
+    
+        const req = httpTestingController.expectOne('http://localhost:8080/api/validate');
+        req.flush({}, { status: 404, statusText: 'Not Found' });
+    
+        expect(console.error).toHaveBeenCalledWith('HTTP error 404: Not Found');
+      });
 });

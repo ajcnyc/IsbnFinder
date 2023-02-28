@@ -1,6 +1,8 @@
 package com.eplan.isbnfinder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +25,22 @@ public class IsbnRestController {
 	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/validate-with-get")
-    public String testValidateWithGet(@RequestParam(value = "csv", defaultValue = "") String csv) {
-    	return handleRequest(csv);
+    public ResponseEntity<String> testValidateWithGet(@RequestParam(value = "csv", defaultValue = "") String csv) {
+		try {
+			return ResponseEntity.ok(handleRequest(csv));
+		} catch (Exception e) {
+		    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred on the server.");
+		}
     }
 	
 	@CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/validate")
-    public @ResponseBody String validateIsbns( @RequestBody String csv ) {
-    	return handleRequest(csv);
+    public ResponseEntity<String> validateIsbns( @RequestBody String csv ) {
+		try {
+			return ResponseEntity.ok(handleRequest(csv));
+		} catch (Exception e) {
+		    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred on the server.");
+		}
     }
     
     public String handleRequest(String csvRequest) {
