@@ -53,7 +53,7 @@ public class ManualIsbn13ValidatorService extends Isbn13ValidatorService {
 			// If the character is not a digit, the isbn is invalid
 			// Note: We do not have to check for X, since X is only allowed
 			// for 10 in ISBN-10s, not ISBN-13s
-			if(Character.isDigit(curChar) == false) {
+			if(isDigit(curChar) == false) {
 				return false;
 			}
 			
@@ -92,6 +92,25 @@ public class ManualIsbn13ValidatorService extends Isbn13ValidatorService {
 			return 1;
 		} else {
 			return 3;
+		}
+	}
+	
+	/*
+	 * Checks if char is a digit 0-9
+	 */
+	private boolean isDigit(char ch) {
+		switch(ch) {
+			case '0': return true;
+			case '1': return true;
+			case '2': return true;
+			case '3': return true;
+			case '4': return true;
+			case '5': return true;
+			case '6': return true;
+			case '7': return true;
+			case '8': return true;
+			case '9': return true;
+			default: return false;
 		}
 	}
 
