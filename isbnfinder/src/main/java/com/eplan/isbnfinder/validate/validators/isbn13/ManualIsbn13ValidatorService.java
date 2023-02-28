@@ -1,9 +1,8 @@
-package com.eplan.isbnfinder.validate.manual.validators;
+package com.eplan.isbnfinder.validate.validators.isbn13;
 
 import org.springframework.stereotype.Service;
 
 import com.eplan.isbnfinder.validate.Isbn;
-import com.eplan.isbnfinder.validate.manual.ManualIsbnValidatorService;
 
 /**
  * Validator to manually validate 13-digit ISBNs
@@ -12,7 +11,7 @@ import com.eplan.isbnfinder.validate.manual.ManualIsbnValidatorService;
  *
  */
 @Service
-public class ManualIsbn13ValidatorService implements ManualIsbnValidatorService {
+public class ManualIsbn13ValidatorService extends Isbn13ValidatorService {
 
 	@Override
 	public Isbn[] validate(String... isbns) {
@@ -32,15 +31,18 @@ public class ManualIsbn13ValidatorService implements ManualIsbnValidatorService 
 	 * Validates a single String ISBN
 	 */
 	private Isbn validate(String isbn) {
-		return new Isbn(isbn, isValid(isbn));
+		return new Isbn(isbn, validateSingle(isbn));
 	}
 
-	/*
-	 * Checks if the given Strin ISBN is valid or not
-	 */
-	private boolean isValid(String isbn) {
+	@Override
+	public boolean validateSingle(String isbn) {
 		// The isbn cleaned of dashes and whitespace
 		String cleanIsbn = clean(isbn);
+		
+		// If blank, return false
+		if(cleanIsbn.equals("")) {
+			return false;
+		}
 		
 		int sumOfProducts = 0; // The sum of the products
 

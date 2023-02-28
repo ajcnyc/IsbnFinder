@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.eplan.isbnfinder.config.Config;
 import com.eplan.isbnfinder.validate.Isbn;
 import com.eplan.isbnfinder.validate.IsbnValidatorService;
-import com.eplan.isbnfinder.validate.apache.validators.FlexibleApacheIsbnValidatorService;
+import com.eplan.isbnfinder.validate.validators.flexible.FlexibleIsbnValidatorService;
 import com.google.gson.Gson;
 
 @ExtendWith(SpringExtension.class)
@@ -82,6 +82,7 @@ class IsbnRestControllerTests {
 		assertTrue(isbns.length == requestArr.length);
 		for (int i = 0; i < isbns.length; i++) {
 			assertEquals(isbns[i].getIsbn(), requestArr[i]);
+			System.out.println(isbns[i].getIsbn()+","+isbns[i].isValid());
 			assertEquals(isbns[i].isValid(), validityCheck[i]);
 		}
 	}

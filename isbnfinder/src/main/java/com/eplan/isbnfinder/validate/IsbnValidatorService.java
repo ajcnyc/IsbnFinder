@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public interface IsbnValidatorService {
+public abstract class IsbnValidatorService {
 
 	/**
 	 * Checks whether the given strings are valid ISBN numbers or not. All ISBNs
@@ -20,6 +20,13 @@ public interface IsbnValidatorService {
 	 * @return The ISBNs that were passed in, returned as Isbn objects.Each ISBN
 	 *         object has a boolean for validity.
 	 */
-	public Isbn[] validate(String... isbns);
+	public abstract Isbn[] validate(String... isbns);
 
+	/**
+	 * Checks whether the given string is a valid ISBN number or not
+	 * 
+	 * @param isbns The ISBN number to check
+	 * @return true if valid, false if not
+	 */
+	public abstract boolean validateSingle(String isbn);
 }

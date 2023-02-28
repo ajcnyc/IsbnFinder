@@ -1,26 +1,25 @@
-package com.eplan.isbnfinder.validate.apache.validators;
+package com.eplan.isbnfinder.validate.validators.isbn10;
 
 import org.apache.commons.validator.routines.ISBNValidator;
 import org.springframework.stereotype.Service;
 
 import com.eplan.isbnfinder.validate.Isbn;
-import com.eplan.isbnfinder.validate.apache.ApacheIsbnValidatorService;
 
 /**
- * Validator using Apache Commons to validate 13-digit ISBNs
+ * Validator using Apache Commons to validate 10-digit ISBNs
  * 
  * @author Alex Cohen
  *
  */
 @Service
-public class ApacheIsbn13ValidatorService implements ApacheIsbnValidatorService {
+public class ApacheIsbn10ValidatorService extends Isbn10ValidatorService {
 
 	private ISBNValidator apacheValidator_; // The Apache ISBNValidator to use
 
 	/**
-	 * Creates an ApacheIsbn13Validator
+	 * Creates an ApacheIsbn10Validator
 	 */
-	public ApacheIsbn13ValidatorService() {
+	public ApacheIsbn10ValidatorService() {
 		apacheValidator_ = new ISBNValidator();
 	}
 
@@ -44,13 +43,13 @@ public class ApacheIsbn13ValidatorService implements ApacheIsbnValidatorService 
 	}
 	
 	/**
-	 * Validates an ISBN-13
+	 * Validates an ISBN-10
 	 * 
-	 * @param isbn The ISBN-13 to validate
+	 * @param isbn The ISBN-10 to validate
 	 * @return true if valid, false if invalid
 	 */
-	boolean validateSingle(String isbn) {
-		return apacheValidator_.isValidISBN13(isbn);
+	public boolean validateSingle(String isbn) {
+		return apacheValidator_.isValidISBN10(isbn);
 	}
 
 }

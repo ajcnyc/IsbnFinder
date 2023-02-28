@@ -1,4 +1,4 @@
-package com.eplan.isbnfinder.validate.apache.validators;
+package com.eplan.isbnfinder.validate.validators.isbn13;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.eplan.isbnfinder.validate.Isbn;
+import com.eplan.isbnfinder.validate.validators.isbn13.ApacheIsbn13ValidatorService;
 
 class ApacheIsbn13ValidatorTests {
 

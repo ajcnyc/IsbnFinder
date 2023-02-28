@@ -1,4 +1,4 @@
-package com.eplan.isbnfinder.validate.apache.validators;
+package com.eplan.isbnfinder.validate.validators.flexible;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -9,21 +9,23 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.eplan.isbnfinder.validate.Isbn;
+import com.eplan.isbnfinder.validate.validators.isbn10.ApacheIsbn10ValidatorService;
+import com.eplan.isbnfinder.validate.validators.isbn13.ManualIsbn13ValidatorService;
 
 class FlexibleApacheIsbnValidatorTests {
 
-	private FlexibleApacheIsbnValidatorService validator_;
+	private FlexibleIsbnValidatorService validator_;
 
 	@BeforeEach
 	void setUp() {
-		validator_ = new FlexibleApacheIsbnValidatorService();
+		validator_ = new FlexibleIsbnValidatorService(new ApacheIsbn10ValidatorService(), new ManualIsbn13ValidatorService());
 	}
 
 	@Test
 	@DisplayName("Mock Test Validating 1 Good ISBN-10 and 1 Good ISBN-13")
 	void mockTestValidate2GoodStrings() {
 		String[] isbnStrs = { "0-06-097329-3", "9781621291657" };
-		FlexibleApacheIsbnValidatorService validator = mock(FlexibleApacheIsbnValidatorService.class);
+		FlexibleIsbnValidatorService validator = mock(FlexibleIsbnValidatorService.class);
 		Isbn[] validated = { new Isbn(isbnStrs[0], true), new Isbn(isbnStrs[1], true) };
 		when(validator.validate(isbnStrs)).thenReturn(validated);
 
