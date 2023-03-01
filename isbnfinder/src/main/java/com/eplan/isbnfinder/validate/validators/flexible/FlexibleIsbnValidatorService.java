@@ -3,9 +3,7 @@ package com.eplan.isbnfinder.validate.validators.flexible;
 import org.springframework.stereotype.Service;
 
 import com.eplan.isbnfinder.validate.Isbn;
-import com.eplan.isbnfinder.validate.validators.isbn10.ApacheIsbn10ValidatorService;
 import com.eplan.isbnfinder.validate.validators.isbn10.Isbn10ValidatorService;
-import com.eplan.isbnfinder.validate.validators.isbn13.ApacheIsbn13ValidatorService;
 import com.eplan.isbnfinder.validate.validators.isbn13.Isbn13ValidatorService;
 
 /**

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.eplan.isbnfinder.validate.IsbnValidatorService;
 
 /**
- * Validator for ISBN-10 Validators
+ * Validator for ISBN-10 Validators to extend
  * 
  * @author Alex Cohen
  *
