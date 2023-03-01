@@ -56,8 +56,7 @@ public class IsbnDAO {
 	public void addIsbnRecord(IsbnRecord isbnRecord) {
 		String sql = "INSERT INTO isbn_requests (isbn, times_searched)\r\n" + "VALUES (?, 1)\r\n"
 				+ "ON DUPLICATE KEY UPDATE times_searched = times_searched + 1";
-		int check = jdbcTemplate_.update(sql, isbnRecord.getIsbn());
-		System.out.println("check: " + check);
+		jdbcTemplate_.update(sql, isbnRecord.getIsbn());
 	}
 
 	/*
