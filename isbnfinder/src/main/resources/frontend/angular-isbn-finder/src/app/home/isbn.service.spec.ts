@@ -83,8 +83,8 @@ describe('IsbnService', () => {
           }
         );
           
-        const req = httpTestingController.expectOne('http://localhost:8080/api/validate');
-        req.error(new ErrorEvent('Network error'));
+        const testRequest = httpTestingController.expectOne('http://localhost:8080/api/validate');
+        testRequest.error(new ErrorEvent('Network error'));
     
       });
     

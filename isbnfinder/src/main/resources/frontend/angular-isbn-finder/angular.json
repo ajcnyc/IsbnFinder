@@ -60,10 +60,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-isbn-finder:build:production"
+              "browserTarget": "angular-isbn-finder:build:production",
+              "port": 4200
             },
             "development": {
-              "browserTarget": "angular-isbn-finder:build:development"
+              "browserTarget": "angular-isbn-finder:build:development",
+              "port": 4200
             }
           },
           "defaultConfiguration": "development"
