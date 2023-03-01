@@ -54,10 +54,10 @@ public class IsbnRestController {
     	RequestResponseFormatter formatter = new RequestResponseFormatter();
     	String[] strIsbns = formatter.formatRequest(csvRequest);
     	
-    	// Add to database
+    	// Add to database COMMENT OUT IF NEED TO TEST WITHOUT DATABASE________
     	IsbnDAO  dao = new IsbnDAO(dataSource_);
     	dao.addIsbnRecords(strIsbns);
-    	
+    	//_____________________________________________________________________
     	// Validate
     	Isbn[] isbns = validator_.validate(strIsbns);
     	
